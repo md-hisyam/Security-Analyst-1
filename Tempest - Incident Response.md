@@ -221,7 +221,8 @@ net localgroup administrators /add shion
 --examine the executable info after final.exe
 
 
-### Visit the full challenge lab [here](https://tryhackme.com/room/tempestincident)
+### Visit the case lab [here](https://tryhackme.com/room/tempestincident)
+
 
 
 
