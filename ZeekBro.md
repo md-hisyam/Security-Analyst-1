@@ -48,9 +48,23 @@ The case was assigned to you. Inspect the PCAP and retrieve the artefacts to con
 The case was assigned to you. Inspect the PCAP and retrieve the artefacts to confirm this alert is a true positive.
 
 1. Investigate the ``log4shell.pcapng`` file with ``detection-log4j.zeek`` script. Investigate the ``signature.log`` file. What is the number of signature hits?
-3. Investigate the ``http.log`` file. Which tool is used for scanning?
+- check the script: `` nano detection-log4j.zeek``
+- breakdown the pcap file: ``zeek -Cr log4shell.pcapng detection-log4j.zeek``
+- ``cat signatures.log | zeek-cut sig_id | wc -l`` we used sig_id to determine the number of signature hits
+
+2. Investigate the ``http.log`` file. Which tool is used for scanning?
+- `` cat http.log`` nmap is the common tool used for scanning
+- or we can use `` cat http.log | zeek-cut user_agent | sort | uniq -c
+
 4. Investigate the ``http.log`` file. What is the extension of the exploit file?
-5. Investigate the log4j.log file. Decode the base64 commands. What is the name of the created file?
+- `` cat http.log | zeek-cut uri | sort | uniq -c``
+
+6. Investigate the log4j.log file. Decode the base64 commands. What is the name of the created file?
+- ``cat log4j.log | head -20 `` examine the value contains encoded base64 command, try to decoded it using cyberchef.
+- Pay attention to the commands used for file creation, such as ``nano``, ``touch``, ``vim``, etc.
+
+### Reference
+- Challenge Lab: https://tryhackme.com/room/zeekbroexercises
 
 
 
